@@ -4,3 +4,7 @@ interface ListItem {
     val id: String
     fun getType(): Int
 }
+
+interface Payloadable {
+    val payload: Any
+}

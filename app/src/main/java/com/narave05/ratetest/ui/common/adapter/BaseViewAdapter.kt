@@ -150,7 +150,8 @@ class BaseViewAdapter<T : ListItem>(
 
 }
 
-class DiffCallback(private val oldList: List<ListItem>, private val newList: List<ListItem>) : DiffUtil.Callback() {
+class DiffCallback(private val oldList: List<ListItem>, private val newList: List<ListItem>) :
+    DiffUtil.Callback() {
 
     override fun getOldListSize(): Int = oldList.size
 
@@ -162,4 +163,13 @@ class DiffCallback(private val oldList: List<ListItem>, private val newList: Lis
 
     override fun areContentsTheSame(oldPosition: Int, newPosition: Int) =
         oldList[oldPosition] == newList[newPosition]
+
+    override fun getChangePayload(oldPosition: Int, newPosition: Int): Any? {
+        val listItem = newList[newPosition]
+        return if (listItem is Payloadable) {
+            listItem.payload
+        } else {
+            super.getChangePayload(oldPosition, newPosition)
+        }
+    }
 }

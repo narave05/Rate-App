@@ -92,18 +92,16 @@ class ExchangeHolder(itemView: View) :
     override fun bind(obj: ExchangeListItem) {
         itemView.tag = obj
         when {
-            obj.type == ExchangeType.CASH && !itemView.cashRb.isChecked -> checkRadioBtnWithoutChangeListener(
-                R.id.cashRb
-            )
-            obj.type == ExchangeType.NON_CASH && !itemView.nonCashRb.isChecked -> checkRadioBtnWithoutChangeListener(
-                R.id.nonCashRb
-            )
+            obj.type == ExchangeType.CASH && !itemView.cashRb.isChecked -> itemView.rg.check(R.id.cashRb)
+            obj.type == ExchangeType.NON_CASH && !itemView.nonCashRb.isChecked -> itemView.rg.check(R.id.nonCashRb)
         }
     }
 
-    private fun checkRadioBtnWithoutChangeListener(@IdRes id: Int) {
-        itemView.rg.setOnCheckedChangeListener(null)
-        itemView.rg.check(id)
+    override fun bind(obj: ExchangeListItem, payload: MutableList<Any>) {
+        //skip radio baton twice choice
+    }
+
+    override fun initHolderListeners() {
         itemView.rg.setOnCheckedChangeListener() { _, i ->
             val type = if (i == R.id.cashRb) ExchangeType.CASH else ExchangeType.NON_CASH
             listItemActionListener?.onExchangeChanged(type)
@@ -113,8 +111,9 @@ class ExchangeHolder(itemView: View) :
 
 data class ExchangeListItem(
     val type: ExchangeType
-) : ListItem {
+) : ListItem, Payloadable {
     override val id: String get() = "ExchangeItem"
+    override val payload: Any get() = type
     override fun getType() = EXCHANGE_LIST_ITEM_TYPE
 }
 
