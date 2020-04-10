@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Rate App</string>
+
+    <string name="sort_dialog_title">Sort By</string>
+    <string name="currencies_dialog_title">Choose Currency</string>
+    <string name="exchange_dialog_title">Choose Exchange Type</string>
+
+    <string name="error_text">Something went wrong</string>
+    <string name="sort">Sort</string>
+    <string name="currency">Currency</string>
+    <string name="exchange">Exchange</string>
+    <string name="cash">Cash</string>
+    <string name="non_cash">Non cash</string>
+
+    <array name="sort_orders">
+        <item>Buy ascending</item>
+        <item>Buy descending</item>
+        <item>Sell ascending</item>
+        <item>Sell descending</item>
+    </array>
+
+    <array name="currencies">
+        <item>USD</item>
+        <item>EUR</item>
+        <item>RUR</item>
+        <item>AUD</item>
+        <item>CAD</item>
+        <item>CHF</item>
+        <item>GBP</item>
+        <item>GEL</item>
+        <item>JPY</item>
+        <item>XAU</item>
+    </array>
+
+    <array name="exchange_type">
+        <item>Cash</item>
+        <item>Non cash</item>
+    </array>
+
+</resources>
