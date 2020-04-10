@@ -61,7 +61,6 @@ class BankInfoFragment : Fragment(), ExchangeChangeAction, ItemClickListener<Bra
     }
 
     override fun onExchangeChanged(exchangeType: ExchangeType) {
-        Toast.makeText(requireContext(), "$exchangeType", Toast.LENGTH_SHORT).show()
         viewModel.onExchangeTypChanged(exchangeType)
     }
 

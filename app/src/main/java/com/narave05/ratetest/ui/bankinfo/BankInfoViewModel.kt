@@ -43,7 +43,6 @@ class BankInfoViewModel(
             repo.observeBankDetailChanges(bankId)
                 .collect {
                     if (it.branchInfos.isEmpty()) return@collect
-                    Log.e("funf", "${it.rateInfos}")
                     _progressLiveData.postValue(false)
                     val uiList = buildUiList(it)
                     _bankInfoLiveData.postValue(uiList)
